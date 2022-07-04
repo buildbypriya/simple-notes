@@ -1,0 +1,30 @@
+.cardContainer {
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(180deg, #ffd0d0 0%, #c9c8ff 100%);
+  border-radius: 20px;
+
+  .cardTitle {
+    border-bottom: 1px solid black;
+    padding: 20px 20px 6px;
+    input {
+      border: none;
+      width: 180px;
+      height: 24px;
+      border-radius: 2px;
+    }
+  }
+
+  .cardDescription {
+    padding: 10px 20px;
+    textarea {
+      width: 205px;
+      height: 130px;
+      border: none;
+      border-radius: 5px;
+    }
+  }
+  .cardActionButton {
+    padding-left: 20px;
+  }
+}

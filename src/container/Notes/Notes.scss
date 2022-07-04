@@ -1,0 +1,12 @@
+.notesContainer {
+  display: flex;
+  flex-direction: column;
+  .notesButtonContainer {
+    justify-content: flex-end;
+    display: flex;
+  }
+  .cardContainer {
+    margin-top: 40px;
+    
+  }
+}
