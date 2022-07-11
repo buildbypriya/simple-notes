@@ -1,6 +1,13 @@
 .profileContainer {
+
   .profileButtonContainer {
     float: right;
     
+  }
+  .profileDetail{
+     label{
+      width: 200px;
+    display: inline-block;
+     }
   }
 }

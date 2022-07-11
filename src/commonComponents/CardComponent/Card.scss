@@ -13,6 +13,12 @@
       height: 24px;
       border-radius: 2px;
     }
+
+    .titleBox {
+      display: inline-flex;
+      width: 184px;
+      margin: 0;
+    }
   }
 
   .cardDescription {
@@ -22,6 +28,11 @@
       height: 130px;
       border: none;
       border-radius: 5px;
+    }
+    .shortDescriptionBox {
+      margin: 0;
+      width: 210px;
+      height: 130px;
     }
   }
   .cardActionButton {
