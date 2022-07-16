@@ -3,6 +3,7 @@ import "./App.scss";
 import Header from "./container/Header/Header";
 import Profile from "./container/Profile/Profile";
 import Notes from "./container/Notes/Notes";
+import Category from "./container/Category/Category";
 import ContextOnlyProvider from "./store/contextOnly/contextOnlyProvider.js";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route path="/profile" element={<Profile />}></Route>
         <Route path="/notes" element={<Notes />}></Route>
         <Route exact path="/" element={<Notes />}></Route>
+        <Route path="/category" element={<Category />}></Route>
       </Routes>
     </ContextOnlyProvider>
   );

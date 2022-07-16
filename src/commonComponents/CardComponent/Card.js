@@ -5,30 +5,40 @@ import CrossIcon from "../../assets/cross.svg";
 import DeleteIcon from "../../assets/delete.svg";
 
 const Card = (props) => {
-  const { isNew, isEdit,title: prevTitle, shortDescription: prevShortDescription } = props.note;
-  const { id } = props;
-  const { saveNote, enableNoteEdit, disableNoteEdit, deleteNote } = props.notesContext;
+  // const { isNew, isEdit,categoryName: prevTitle, shortDescription: prevShortDescription } = props.note;
+
+  const {
+    id,
+    isNew,
+    isEdit,
+    title: prevTitle,
+    shortDescription: prevShortDescription,
+  } = props.cardData;
+  const { normalButtonText, editButtonText, enableCard, disableCard, deleteCard, save } = props;
+ 
   const [title, setTitle] = useState(prevTitle);
-  const [shortDescription, setShortDescription] = useState(prevShortDescription);
+  const [shortDescription, setShortDescription] =
+    useState(prevShortDescription);
 
   const titleChangeHandler = (event) => {
     setTitle(event.target.value);
   };
+
   const saveHandler = () => {
-    const tempNote = { ...props.note };
+    const tempNote = { ...props.cardData };
     tempNote.title = title;
     tempNote.shortDescription = shortDescription;
     tempNote.isNew = false;
     tempNote.isEdit = false;
-    saveNote(tempNote, id);
+    save(tempNote);
   };
 
   const onCloseHandler = () => {
     setTitle(prevTitle);
     setShortDescription(prevShortDescription);
-    disableNoteEdit(id);
-  }
-  
+    disableCard(id);
+  };
+
   const shortDescriptionChangeHandler = (event) => {
     setShortDescription(event.target.value);
   };
@@ -58,7 +68,7 @@ const Card = (props) => {
             iconSrc={DeleteIcon}
             iconAltText="delete"
             variant="icon"
-            onClick={() => deleteNote(id)}
+            onClick={() => deleteCard(id)}
           />
         )}
       </div>
@@ -73,11 +83,16 @@ const Card = (props) => {
           <p className="shortDescriptionBox">{shortDescription}</p>
         )}
       </div>
+      {/* normalButtonText if passed will be the text on normal card state*/}
+      {/* editButtonText if passed will be the text on edit card state*/}
+
       <div className="cardActionButton">
         <Button
           variant="secondary"
-          buttonText={isEdit ? "Save" : "Edit"}
-          onClick={isEdit ? saveHandler : ()=>enableNoteEdit(id)}
+          buttonText={
+            isEdit ? editButtonText ?? "Save" : normalButtonText ?? "Edit"
+          }
+          onClick={isEdit ? saveHandler : () => enableCard(id)}
         />
       </div>
     </div>
