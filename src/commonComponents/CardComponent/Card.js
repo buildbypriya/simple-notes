@@ -7,15 +7,14 @@ import DeleteIcon from "../../assets/delete.svg";
 const Card = (props) => {
   // const { isNew, isEdit,categoryName: prevTitle, shortDescription: prevShortDescription } = props.note;
 
+  const { normalButtonText, editButtonText, enableCard, disableCard, deleteCard, save, cardData } = props;
   const {
-    id,
     isNew,
     isEdit,
     title: prevTitle,
     shortDescription: prevShortDescription,
-  } = props.cardData;
-  const { normalButtonText, editButtonText, enableCard, disableCard, deleteCard, save } = props;
-
+  } = cardData;
+ 
   const [title, setTitle] = useState(prevTitle);
   const [shortDescription, setShortDescription] =
     useState(prevShortDescription);
@@ -24,8 +23,9 @@ const Card = (props) => {
     setTitle(event.target.value);
   };
 
+  // This will save the card data of the note
   const saveHandler = () => {
-    const tempNote = { ...props.cardData };
+    const tempNote = { ...cardData };
     tempNote.title = title;
     tempNote.shortDescription = shortDescription;
     tempNote.isNew = false;
@@ -33,10 +33,13 @@ const Card = (props) => {
     save(tempNote);
   };
 
+// the edit mode of note wil be disabled
   const onCloseHandler = () => {
+    // here the previously existing title will appear
     setTitle(prevTitle);
+    // here the previously existing short description will appear
     setShortDescription(prevShortDescription);
-    disableCard(id);
+    disableCard(cardData);
   };
 
   const shortDescriptionChangeHandler = (event) => {
@@ -68,7 +71,7 @@ const Card = (props) => {
             iconSrc={DeleteIcon}
             iconAltText="delete"
             variant="icon"
-            onClick={() => deleteCard(id)}
+            onClick={() => deleteCard(cardData)}
           />
         )}
       </div>
@@ -92,7 +95,7 @@ const Card = (props) => {
           buttonText={
             isEdit ? editButtonText ?? "Save" : normalButtonText ?? "Edit"
           }
-          onClick={isEdit ? saveHandler : () => enableCard(id)}
+          onClick={isEdit ? saveHandler : () => enableCard(cardData)}
         />
       </div>
     </div>
