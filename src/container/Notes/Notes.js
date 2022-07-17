@@ -23,25 +23,46 @@ const Notes = () => {
       setSelectedCategoryId(categoryData[0].id);
       setNotesData(categoryData[0].notes);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(()=>{
-    console.log(categoryData);
-  })
+    if (selectedCategoryId === "All") {
+      // on select of "All" create a notes array by combining all notes from all categories
+      // yet to be created
+    } else {
+      // on select of any other categories, convert the value to number as all our notes and categories id are number
+      const selectedCategoryIndex = categoryData.findIndex(
+        (category) => category.id === selectedCategoryId
+      );
+      if (selectedCategoryIndex !== -1) {
+        setNotesData(categoryData[selectedCategoryIndex].notes);
+      }
+    }
+
+  // only run this useEffect when new note is added to the category
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[categoryData])
 
   const onCardSaveHandler = (cardData) => {
     saveNote(cardData, selectedCategoryId);
   };
 
   const selectedCategoryHandler = (event) => {
-    setSelectedCategoryId(event.target.value);
-    const selectedCategoryIndex = categoryData.findIndex(
-      (category) => category.id === event.target.value
-    );
-   if(selectedCategoryIndex!==-1){
-    setNotesData(categoryData[selectedCategoryIndex].notes);
-
-   }
+    if (event.target.value === "All") {
+      // on select of "All" create a notes array by combining all notes from all categories
+      // yet to be created
+    } else {
+      // on select of any other categories, convert the value to number as all our notes and categories id are number
+      const selectedCategoryId = parseInt(event.target.value);
+      setSelectedCategoryId(selectedCategoryId);
+      const selectedCategoryIndex = categoryData.findIndex(
+        (category) => category.id === selectedCategoryId
+      );
+      if (selectedCategoryIndex !== -1) {
+        setNotesData(categoryData[selectedCategoryIndex].notes);
+      }
+    }
   };
 
   const enableNoteEditHandler = (noteId) => {
@@ -65,7 +86,7 @@ const Notes = () => {
             value={selectedCategoryId}
             onChange={selectedCategoryHandler}
           >
-            <option value={"All"}>All</option>
+            <option value="All">All</option>
             {categoryData.map((category) => (
               <option value={category.id} key={category.id}>
                 {category.title ? category.title : category.id}
@@ -79,10 +100,10 @@ const Notes = () => {
         />
       </div>
       <div className="allCardsContainer">
-        {notesData.map((note, index) => (
+        {notesData.map((note) => (
           <Card
-            cardData={note}
-            key={index}
+            cardData={{...note}}
+            key={selectedCategoryId.toString()+note.id.toString()}
             save={onCardSaveHandler}
             enableCard={enableNoteEditHandler}
             disableCard={disableNoteEditHandler}

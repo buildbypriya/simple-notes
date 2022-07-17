@@ -15,7 +15,7 @@ const Card = (props) => {
     shortDescription: prevShortDescription,
   } = props.cardData;
   const { normalButtonText, editButtonText, enableCard, disableCard, deleteCard, save } = props;
- 
+
   const [title, setTitle] = useState(prevTitle);
   const [shortDescription, setShortDescription] =
     useState(prevShortDescription);

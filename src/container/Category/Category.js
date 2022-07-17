@@ -24,7 +24,7 @@ const Category = () => {
         />
       </div>
       <div className="allCardsContainer">
-        {categoryData.map((category) => (
+        {categoryData.map((category, index) => (
           <Card
             cardData={category}
             normalButtonText="Learn more"

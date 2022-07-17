@@ -72,7 +72,6 @@ const ContextOnlyProvider = (props) => {
   };
 
   const disableCategoryNoteEdit = (categoryId) => {
-    // console.log(categoryIndex);
     const tempCategoryNotesdata = [...categoryData];
     const selectedCategoryIndex = tempCategoryNotesdata.findIndex(
       (category) => category.id === categoryId
@@ -96,7 +95,6 @@ const ContextOnlyProvider = (props) => {
 
   // Note
   const addNewNote = (categoryId) => {
-  //  console.log('addnote')
     const tempCategoryData = [...categoryData];
     const selectedCategoryIndex = tempCategoryData.findIndex(
       (category) => category.id === categoryId
@@ -115,7 +113,6 @@ const ContextOnlyProvider = (props) => {
       notesData.push(newNote);
       setCategoryData(tempCategoryData);
     }
-      // console.log(categoryData);
   };
 
   const saveNote = (selectedNote, categoryId) => {
