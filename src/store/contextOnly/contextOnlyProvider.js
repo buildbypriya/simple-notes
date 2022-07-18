@@ -162,14 +162,14 @@ const ContextOnlyProvider = (props) => {
 
   };
 
-  const deleteNote = (noteId, categoryId) => {
+  const deleteNote = (selectedNote, categoryId) => {
     const tempCategoryData = [...categoryData];
    const selectedCategoryIndex = tempCategoryData.findIndex(
     (category => category.id===categoryId)
    );
    if(selectedCategoryIndex!==-1){
     const notesData = tempCategoryData[selectedCategoryIndex].notes;
-    const selectedNoteIndex = notesData.findIndex((note)=>note.id===noteId);
+    const selectedNoteIndex = notesData.findIndex((note)=>note.id===selectedNote.id);
     if(selectedNoteIndex!==-1){
       notesData.splice(selectedNoteIndex,1);
       setCategoryData(tempCategoryData);

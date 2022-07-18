@@ -107,7 +107,7 @@ const Notes = () => {
       selectedCategoryId === "All" ? note.categoryId : selectedCategoryId
     );
   };
-  console.log(notesData);
+
   return (
     <div className="notesContainer">
       <div className="notesButtonContainer">
