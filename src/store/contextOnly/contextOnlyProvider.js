@@ -82,10 +82,10 @@ const ContextOnlyProvider = (props) => {
     }
   };
 
-  const deleteCategoryNote = (categoryId) => {
+  const deleteCategoryNote = (selectedCategory) => {
     const tempCategoryNotesdata = [...categoryData];
     const selectedCategoryIndex = tempCategoryNotesdata.findIndex(
-      (category) => category.id === categoryId
+      (category) => category.id === selectedCategory.id
     );
     if (selectedCategoryIndex !== -1) {
       tempCategoryNotesdata.splice(selectedCategoryIndex, 1);
